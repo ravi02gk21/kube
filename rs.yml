@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: web-rs
+spec:
+ replicas: 3
+ selector:
+   matchExpressions:
+   - {key: env, operator: In, values: [ production ]}
+  
+ template:
+  metadata:
+   name: web-pod
+   labels:
+    env: production
+    country: In
+    dc: "2"
+  spec:
+   containers: 
+   - name: web-con
+     image: httpd
